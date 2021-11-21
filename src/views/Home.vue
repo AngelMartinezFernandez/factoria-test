@@ -1,6 +1,5 @@
 <template>
   <div id="home">
-    <Sidebar/>
     <div class="content">
       <figure v-if="!products">
         <img alt="Vue logo" src="../assets/logo.png">
@@ -20,7 +19,6 @@
 </template>
 
 <script>
-import Sidebar from '@/components/Sidebar'
 import Product from '@/components/Product'
 
   // https://fakestoreapi.com/
@@ -28,8 +26,7 @@ import Product from '@/components/Product'
 export default {
   name: 'Home',
   components: {
-    Product,
-    Sidebar
+    Product
   },
   data () {
     return {
@@ -56,8 +53,6 @@ export default {
 </script>
 <style scoped>
 #home {
-  display: grid;
-  grid-template-columns: 30% 70%;
   height: 100%;
   width: 100%;
 }

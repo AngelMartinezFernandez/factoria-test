@@ -1,8 +1,29 @@
 <template>
+  <router-view name="aside"/>
   <router-view/>
 </template>
 
 <style>
+
+:root {
+  --primary-color: #2d2a4c;
+  --secondary-color: whitesmoke;
+  --elements-color: #50e56a;
+}
+
+#app {
+  font-family: "Roboto", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  display: grid;
+  grid-template-columns: 30% 70%;
+
+  height: 100vh;
+  width: 100vw;
+}
+
+/*RESET*/
 /* Box sizing rules */
 *,
 *::before,
@@ -83,19 +104,4 @@ select {
 }
 /* FIN RESET */
 
-:root {
-  --primary-color: #2d2a4c;
-  --secondary-color: whitesmoke;
-  --elements-color: #50e56a;
-}
-
-#app {
-  font-family: "Roboto", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-
-  height: 100vh;
-  width: 100vw;
-}
 </style>

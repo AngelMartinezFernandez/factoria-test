@@ -1,7 +1,8 @@
 <template>
   <div class="product-card" >
     <figure class="card-img">
-      <img :src="image" :alt="title">
+<!--      <img :src="image ? image : noImageSrc" :alt="title">-->
+      <img :src="getImage" :alt="title">
     </figure>
     <div class="product-detail">
       <h5>{{ title }}</h5>
@@ -41,8 +42,17 @@ export default {
       type: Number,
       default: null,
       required: true
-    },
-
+    }
+  },
+  data () {
+    return {
+      noImageSrc: 'https://w7.pngwing.com/pngs/998/203/png-transparent-black-and-white-no-to-camera-logo-video-on-demand-retail-website-simple-no-miscellaneous-television-text.png'
+    }
+  },
+  computed: {
+    getImage () {
+      return this.image ? this.image : this.noImageSrc
+    }
   },
   methods: {
     emitProduct () {
