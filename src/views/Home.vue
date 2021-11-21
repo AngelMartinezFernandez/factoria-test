@@ -2,20 +2,18 @@
   <div id="home">
     <Sidebar/>
     <div class="content">
-      <figure v-if="!product">
+      <figure v-if="!products">
         <img alt="Vue logo" src="../assets/logo.png">
       </figure>
-      <div class="content__products" v-else>
-        <div class="product-card" >
-          <figure>
-            <img :src="product.image" :alt="product.title" class="card-img">
-          </figure>
-          <div>
-            <h5>{{ product.title }}</h5>
-            <p>{{ product.description }}</p>
-            <h3>{{ product.price }}</h3>
-          </div>
-        </div>
+      <div class="content__products" v-else v-for="product in products" :key="product.id">
+        <Product
+          :id="product.id"
+          :image="product.image"
+          :title="product.title"
+          :description="product.description"
+          :price="product.price"
+          @add-product="addProduct"
+        />
       </div>
     </div>
   </div>
@@ -23,16 +21,20 @@
 
 <script>
 import Sidebar from '@/components/Sidebar'
+import Product from '@/components/Product'
 
-export default {
   // https://fakestoreapi.com/
+  // problemas con cors
+export default {
   name: 'Home',
   components: {
+    Product,
     Sidebar
   },
   data () {
     return {
-      product: null
+      products: null,
+      checkout: []
     }
   },
   created () {
@@ -40,14 +42,16 @@ export default {
   },
   methods: {
     getProducts () {
-      return fetch('https://fakestoreapi.com/products/1')
-          .then(res=>res.json())
-          .then(json=> {
-            console.log(json)
-            this.product = json
+      return fetch('https://fakestoreapi.com/products/').then(res => res.json())
+          .then(data => {
+            this.products = data
           })
+    },
+    addProduct (product) {
+      this.checkout.push(product)
+      console.log('checkout', this.checkout)
     }
-  },
+  }
 }
 </script>
 <style scoped>
@@ -59,22 +63,10 @@ export default {
 }
 .content {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  width: 100%;
-  height: 100%;
-}
-.card-img {
-  height: 12rem;
-  width: 10rem;
 }
 .content__products {
   width: 90%;
-}
-.product-card {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 2px solid #2d2a4c;
 }
 </style>
