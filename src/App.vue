@@ -1,6 +1,8 @@
 <template>
-  <router-view name="aside"/>
-  <router-view/>
+  <div id="app">
+    <router-view name="aside"/>
+    <router-view/>
+  </div>
 </template>
 
 <style>

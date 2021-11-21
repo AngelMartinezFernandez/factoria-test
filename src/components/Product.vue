@@ -8,7 +8,12 @@
       <h5>{{ title }}</h5>
       <p>{{ description }}</p>
       <h3>{{ price }}</h3>
-      <button @click="emitProduct" class="button-type1">Añadir</button>
+<!--      <button @click="emitProduct" class="button-type1">Añadir</button>  LO DEJO PARA QUE SE VEA LA DIFERENCIA ENTRE USAR UN BOTON DE HTML A UN COMPONENTE-->
+      <Button
+          :title="'Añadir'"
+          :type="'action'"
+          @emit-action="emitProduct"
+      />
     </div>
   </div>
 </template>
@@ -16,9 +21,11 @@
 <script>
 // fallos
 // me peto la consola de errores porque haciendo copia pega se me olvido poner el price type number y se esperaba strings
-
+// me rellenaba el array de productos al añadir con objetos vacíos hasta que me di cuenta.... que pasaba un array vacío y no pasaba id, title y price
+import Button from '@/components/shared/Button.vue'
 export default {
   name: 'Product',
+  components: {Button},
   props: {
     id: {
       type: Number,
@@ -86,30 +93,6 @@ export default {
   width: 100%;
   height: auto;
 }
-button {
-  background-position: center; /* animation */
-  box-sizing: border-box;
-  border-radius: 5px;
-  margin: 0 2em;
-  padding: 0 1em;
-  font-size: 1rem;
-  font-family: sans-serif;
-  font-weight: bold;
-  text-transform: uppercase;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  opacity: 1;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-.button-type1 {
-  color: #212241;
-  background-color: #28E843;
-  background-size: 100%;
-}
 @supports (object-fit: cover) {
   .card-img img {
     height: 100%;
@@ -117,4 +100,32 @@ button {
     object-position: center center;
   }
 }
+/* Los estilos del botón ya no se usan, al crear un componente están dentro del mismo */
+/* Los dejo comentados para que se vea el cambio */
+
+/*button {*/
+/*  background-position: center; !* animation *!*/
+/*  box-sizing: border-box;*/
+/*  border-radius: 5px;*/
+/*  margin: 0 2em;*/
+/*  padding: 0 1em;*/
+/*  font-size: 1rem;*/
+/*  font-family: sans-serif;*/
+/*  font-weight: bold;*/
+/*  text-transform: uppercase;*/
+/*  border: none;*/
+/*  outline: none;*/
+/*  cursor: pointer;*/
+/*  opacity: 1;*/
+/*  -webkit-user-select: none;*/
+/*  -moz-user-select: none;*/
+/*  -ms-user-select: none;*/
+/*  user-select: none;*/
+/*}*/
+
+/*.button-type1 {*/
+/*  color: #212241;*/
+/*  background-color: #28E843;*/
+/*  background-size: 100%;*/
+/*}*/
 </style>
