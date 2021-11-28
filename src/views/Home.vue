@@ -19,6 +19,9 @@
 </template>
 
 <script>
+
+import { mapActions, mapGetters } from 'vuex'
+
 import Product from '@/components/Product'
 
   // https://fakestoreapi.com/
@@ -31,13 +34,16 @@ export default {
   data () {
     return {
       products: null,
-      checkout: []
     }
+  },
+  computed: {
+    ...mapGetters(['getTotal'])
   },
   created () {
     this.getProducts()
   },
   methods: {
+    ...mapActions(['addItemToShoppingCart']),
     getProducts () {
       return fetch('https://fakestoreapi.com/products/').then(res => res.json())
           .then(data => {
@@ -45,16 +51,16 @@ export default {
           })
     },
     addProduct (product) {
-      this.checkout.push(product)
-      console.log('checkout', this.checkout)
+      this.addItemToShoppingCart(product)
+      console.log('total', this.getTotal)
     }
   }
 }
 </script>
 <style scoped>
 #home {
-  height: 100%;
-  width: 100%;
+  height: 100vh;
+  overflow-y: auto;
 }
 .content {
   display: flex;

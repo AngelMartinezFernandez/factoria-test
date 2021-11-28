@@ -1,8 +1,6 @@
 <template>
-  <div id="app">
-    <router-view name="aside"/>
-    <router-view/>
-  </div>
+  <router-view name="aside"/>
+  <router-view/>
 </template>
 
 <style>
@@ -12,17 +10,13 @@
   --secondary-color: whitesmoke;
   --elements-color: #50e56a;
 }
-
 #app {
   font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   display: grid;
-  grid-template-columns: 30% 70%;
-
-  height: 100vh;
-  width: 100vw;
+  grid-template-columns: 20% 80%;
 }
 
 /*RESET*/

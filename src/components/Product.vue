@@ -7,12 +7,12 @@
     <div class="product-detail">
       <h5>{{ title }}</h5>
       <p>{{ description }}</p>
-      <h3>{{ price }}</h3>
+      <h3>{{ price }}€</h3>
 <!--      <button @click="emitProduct" class="button-type1">Añadir</button>  LO DEJO PARA QUE SE VEA LA DIFERENCIA ENTRE USAR UN BOTON DE HTML A UN COMPONENTE-->
       <Button
           :title="'Añadir'"
           :type="'action'"
-          @emit-action="emitProduct"
+          @click="emitProduct"
       />
     </div>
   </div>
@@ -72,22 +72,24 @@ export default {
 <style scoped>
 .product-card {
   display: grid;
-  grid-template-columns: 30% 70%;
+  justify-content: center;
+  grid-template-columns: 1fr 7fr;
   border: 2px solid #2d2a4c;
+  height: 13rem;
 }
 .product-detail {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 }
 .card-img {
   display: flex;
   justify-content: center;
   align-items: center;
-
-  /*height: 12em;*/
-  /*width: 10em;*/
+  height: 13rem;
+  width: 10rem;
+  border-right: #2d2a4c solid 2px;
 }
 .card-img img {
   width: 100%;

@@ -1,5 +1,5 @@
 <template>
-  <button @click="emitAction" :class="['button', getButtonStyle]">{{title}}</button>
+  <button :class="['button', getButtonStyle]">{{title}}</button>
 </template>
 
 <script>
@@ -28,12 +28,7 @@ export default {
     getButtonStyle () {
       return this.buttonStyles[this.type]
     }
-  },
-  methods: {
-    emitAction () {
-      this.$emit('emit-action')
-    }
-  },
+  }
 }
 </script>
 
