@@ -1,6 +1,7 @@
 <template>
   <router-view name="aside"/>
   <router-view/>
+<!--  EN ESTE COMPONENTE SE RENDERIZA LA APP, NO SE SUELE TOCAR MUCHO, MAS QUE PARA AÑADIR LOS ROUTER-VIEW, ALGUN ESTILO Y POCO MAS-->
 </template>
 
 <style>

@@ -16,6 +16,7 @@
 <script>
 export default {
   name: 'Sidebar'
+  // UN SIDEBAR, CON UNOS ROUTER-LINK, NO TIENE MAS, LO UNICO AQUI QUE OS PUEDE SERVIR EL CSS POR SI USO ALGO QUE COINCIDE QUE NO VISTEIS
 }
 </script>
 

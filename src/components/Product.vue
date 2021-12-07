@@ -1,14 +1,14 @@
 <template>
   <div class="product-card" >
     <figure class="card-img">
-<!--      <img :src="image ? image : noImageSrc" :alt="title">-->
+<!--      <img :src="image ? image : noImageSrc" :alt="title">
+       EN ESTE CASO SE PONE EN EL SRC LA COMPROBACION, PERO SE VE FEO, ME GUSTA MAS SACARLA A UNA PROPIEDAD COMPUTADA, QUEDA MAS LIMPIO Y SI SE NOMBRA CORRECTAMENTE MAS ENTENDIBLE-->
       <img :src="getImage" :alt="title">
     </figure>
     <div class="product-detail">
       <h5>{{ title }}</h5>
       <p>{{ description }}</p>
       <h3>{{ price }}€</h3>
-<!--      <button @click="emitProduct" class="button-type1">Añadir</button>  LO DEJO PARA QUE SE VEA LA DIFERENCIA ENTRE USAR UN BOTON DE HTML A UN COMPONENTE-->
       <Button
           :title="'Añadir'"
           :type="'action'"
@@ -19,9 +19,10 @@
 </template>
 
 <script>
-// fallos
-// me peto la consola de errores porque haciendo copia pega se me olvido poner el price type number y se esperaba strings
-// me rellenaba el array de productos al añadir con objetos vacíos hasta que me di cuenta.... que pasaba un array vacío y no pasaba id, title y price
+// COMPONENTE REUTILIZABLE, SE INTENTA NO PONER LOGICA ESPECIFICA EN LOS COMPONENTES QUE SE QUIERAN REUTILIZAR
+// AQUI LO BUENO ES QUE LLEGUEN LOS DATOS TRATADOS Y QUE SOLO PINTE
+// TENER CSS Y PROPIEDADES COMPUTADAS SI HACEN FALTA NO ESTA MAL, COMO EL CASO DE LA IMAGEN PARA QUE PINTE UNA GENERICA SI NO RECIBE
+// AUN ASI, SI SE PONE LOGICA QUE NO TOCA PERO FUNCIONA ES LO QUE HAY, TIEMPO DE REFACTORIZAR Y APRENDER A HACERLO MEJOR SIEMPRE HAY.
 import Button from '@/components/shared/Button.vue'
 export default {
   name: 'Product',
@@ -57,6 +58,12 @@ export default {
     }
   },
   computed: {
+    // UNA PROPIEDAD COMPUTADA ES A MI ENTENDER, UNA VARIABLE DINAMICA Y REACTIVA
+    // QUE SIGNIFICA ESTO, QUE CUANDO ALGO CAMBIA EN LA LOGICA QUE CONTIENE, ESTA ACTUALIZA SU VALOR AUTOMATICAMENTE
+    // AQUI EN getImage SI SE RECIBE UNA IMAGEN POR PROP TE DEVUELVE LA IMAGEN, EN CASO CONTRARIO DEVUELVE LA VARIABLE DE LA DATA
+    // SI EN CASO INICIAL NO SE RECIBE LA IMAGEN, PERO LUEGO NOSOTROS POR LA LOGICA QUE SEA, POR EJEMPLO HACEMOS QUE PULSANDO UN BOTON EN HOME,
+    // PASE UNA IMAGEN A PRODUCT, AUTOMANTICAMENTE getImage SE ACTUALIZARA Y DONDE PASABA  noImageSrc PASARA LA IMAGEN NUEVA
+    // A DIFERENCIA DE UNA VARIABLE NORMAL O UNA VARIABLE DECLARADA EN LA DATA QUE NO CAMBIARA HASTA QUE LE VOLVAMOS A ASIGNAR OTRO VALOR.
     getImage () {
       return this.image ? this.image : this.noImageSrc
     }
